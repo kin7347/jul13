@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+table{
+	background-color: #FCEC93;
+	margin: 0 auto;
+	width: 800px;
+	height: 500px;
+	border-collapse: collapse;
+}
+th{
+  background-color: #ACCCAC;	
+}
+td{
+	text-align: center;
+	border-bottom: 1px solid red;
+}
+
+#td1{
+	width: 10%;
+}
+#td2{
+	width: 20%
+}
+title{
+	text-align: left;
+}
+
+td:hover {
+	
+}

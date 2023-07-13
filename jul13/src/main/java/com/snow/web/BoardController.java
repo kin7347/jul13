@@ -1,8 +1,14 @@
 package com.snow.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 // Ctrl + shift + o --> 임포트정리
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BoardController {
@@ -10,8 +16,38 @@ public class BoardController {
 	
 	//요청에 대해서 연결시킬 녀석 
 	@GetMapping("/board")  //get방식
-	public String board() {
-		return "board"; //jsp파일명
+	public ModelAndView board() {
+		ModelAndView mv = new ModelAndView("board");
+		mv.addObject("name", "김덕수");
+		
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		for (int i = 1; i < 10; i++) {
+			BoardDTO e = new BoardDTO(i,i+"번째 글 입니다","김덕수","2023-07-"+i,i*10);
+			//e.setBno(i);
+			//e.setBtitle(i+ "번째 글 입니다");
+			//e.setBdate("2023-07-"+i);
+			//e.setBlike(i * 10);
+			list.add(e);
+		}
+		
+		mv.addObject("list", list);
+		
+		//Map 방식
+		List<Map<String, Object>> list2 = new ArrayList<Map<String,Object>>();
+		
+		for (int i = 1; i < 10; i++) {
+			Map<String,Object> e = new HashMap<String, Object>();
+			e.put("bno", i);
+			e.put("btitle", i+"번째 글입니다2");
+			e.put("bwrite", "홍길동");
+			e.put("bdate", "2023-07-13");
+			e.put("blike", i * 10);
+			list2.add(e);
+		}
+		
+		mv.addObject("list2",list2);
+		
+		return mv; //jsp파일명
 	}
 	
 	//@PostMapping("/board") //post방식
